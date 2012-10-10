@@ -41,6 +41,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
         
         this.translation.x += p.x - this.translationOrigin.x;
         this.translation.y += p.y - this.translationOrigin.y;
+		this.translationOrigin = p;		
       }
     }
   },

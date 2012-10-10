@@ -41,7 +41,6 @@
           var x = sender.view.x + sender.translation.x,
               y = sender.view.y + sender.translation.y;
           sender.view.setTransform({x: x, y: y });
-          sender.setTranslation({ x: 0, y: 0 });
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.x = x;
             sender.view.y = y;
@@ -285,7 +284,7 @@
     </blockquote>
     <h3>Value Accumulation</h3>
     <p>
-      I tried to make the behavior of <tt>JSGestureRecognizer</tt> as close to <rr>UIGestureRecognizer</rr> as possible. This means the scale/rotation/translation values accumulate, meaning that if you want to animate scale/rotation/transformation you will have to set the value to 0 (or in case of scale to 1) after every event, which will return delta values. The examples below all do that.
+      I tried to make the behavior of <tt>JSGestureRecognizer</tt> as close to <rr>UIGestureRecognizer</rr> as possible. This means the scale/rotation/translation values accumulate, meaning that if you want to animate scale/rotation/transformation you will have to set the value to 0 (or in case of scale to 1) after every event, which will return delta values. Some examples below do that.
     </p>
     <h3>Rotation Value</h3>
     <p>
@@ -384,7 +383,6 @@
               sender.state == JSGestureRecognizerStateChanged) {
             var x = sender.view.x + sender.translation.x,
                 y = sender.view.y + sender.translation.y;
-            sender.view.setTransform({x: x, y: y });
             sender.setTranslation({ x: 0, y: 0 });
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.x = x;
