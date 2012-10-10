@@ -61,7 +61,6 @@
             sender.state == JSGestureRecognizerStateChanged) {
           var scale = sender.view.scale * sender.scale;
           sender.view.setTransform({ scale: scale });
-          sender.setScale(1);
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.scale = scale;
           }
@@ -113,7 +112,6 @@
           var x = sender.view.x + sender.translation.x,
               y = sender.view.y + sender.translation.y;
           sender.view.setTransform({x: x, y: y });
-          sender.setTranslation({ x: 0, y: 0 });
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.x = x;
             sender.view.y = y;
@@ -126,7 +124,6 @@
             sender.state == JSGestureRecognizerStateChanged) {
           var scale = sender.view.scale * sender.scale;
           sender.view.setTransform({ scale: scale });
-          sender.setScale(1);
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.scale = scale;
           }
@@ -344,7 +341,6 @@
               sender.state == JSGestureRecognizerStateChanged) {
             var scale = sender.view.scale * sender.scale;
             sender.view.setTransform({ scale: scale });
-            sender.setScale(1);
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.scale = scale;
             }
@@ -433,7 +429,6 @@
             var x = sender.view.x + sender.translation.x,
                 y = sender.view.y + sender.translation.y;
             sender.view.setTransform({x: x, y: y });
-            sender.setTranslation({ x: 0, y: 0 });
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.x = x;
               sender.view.y = y;
@@ -446,7 +441,6 @@
               sender.state == JSGestureRecognizerStateChanged) {
             var scale = sender.view.scale * sender.scale;
             sender.view.setTransform({ scale: scale });
-            sender.setScale(1);
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.scale = scale;
             }

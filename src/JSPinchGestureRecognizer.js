@@ -19,10 +19,12 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
       if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
+        this.previousScale = 1;        
       } else {
         this.fire(this.target, JSGestureRecognizerStateChanged, this);
         this.velocity = event.scale / this.scale;
-        this.scale *= event.scale;
+        this.scale *= (event.scale / this.previousScale);
+        this.previousScale = event.scale;
       }
     }
   },
@@ -35,6 +37,7 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
   reset: function() {
     this.beganRecognizer = false;
     this.scale = 1;
+    this.previousScale = 1;
     this.velocity = 0;
   },
   
