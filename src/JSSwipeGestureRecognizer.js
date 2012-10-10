@@ -25,7 +25,6 @@ var JSSwipeGestureRecognizer = JSTouchRecognizer.extend({
     var allTouches = event.allTouches();
     if (event.target == this.target && this.numberOfTouchesRequired == allTouches.length) {
       event.preventDefault();
-      var allTouches = event.allTouches();
       this.distance.x = allTouches[0].pageX - this.startingPos.x;
       this.distance.y = allTouches[0].pageY - this.startingPos.y;
 

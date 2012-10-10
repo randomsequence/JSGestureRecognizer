@@ -16,7 +16,7 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
   gesturechange: function(event) {
     if (event.target == this.target) {
       event.preventDefault();
-      if (this.beganRecognizer == false) {
+      if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
       } else {

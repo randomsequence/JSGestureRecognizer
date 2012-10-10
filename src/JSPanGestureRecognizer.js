@@ -28,7 +28,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
         }
       }
       event.preventDefault();
-      if (this.beganRecognizer == false) {
+      if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
         this.translationOrigin = this.getEventPoint(event);

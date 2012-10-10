@@ -174,4 +174,4 @@ var JSTouchRecognizer = Class.extend({
 // -- Class Methods -----------------------------------------------------------
 JSTouchRecognizer.addGestureRecognizer = function(target, gestureRecognizer) {
   gestureRecognizer.setTarget(target);
-}
+};
