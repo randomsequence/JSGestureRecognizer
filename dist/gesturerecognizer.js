@@ -270,7 +270,7 @@ var JSTouchRecognizer = Class.extend({
 // -- Class Methods -----------------------------------------------------------
 JSTouchRecognizer.addGestureRecognizer = function(target, gestureRecognizer) {
   gestureRecognizer.setTarget(target);
-}
+};
 // -- Abstract Class: JSGestureRecognizer -------------------------------------
 var JSGestureRecognizer = JSTouchRecognizer.extend({
   toString: function() {
@@ -503,7 +503,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
         }
       }
       event.preventDefault();
-      if (this.beganRecognizer == false) {
+      if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
         this.translationOrigin = this.getEventPoint(event);
@@ -571,7 +571,7 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
   gesturechange: function(event) {
     if (event.target == this.target) {
       event.preventDefault();
-      if (this.beganRecognizer == false) {
+      if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
       } else {
@@ -617,7 +617,7 @@ var JSRotationGestureRecognizer = JSGestureRecognizer.extend({
   gesturechange: function(event) {
     if (event.target == this.target) {
       event.preventDefault();
-      if (this.beganRecognizer == false) {
+      if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
       } else {
@@ -672,7 +672,6 @@ var JSSwipeGestureRecognizer = JSTouchRecognizer.extend({
     var allTouches = event.allTouches();
     if (event.target == this.target && this.numberOfTouchesRequired == allTouches.length) {
       event.preventDefault();
-      var allTouches = event.allTouches();
       this.distance.x = allTouches[0].pageX - this.startingPos.x;
       this.distance.y = allTouches[0].pageY - this.startingPos.y;
 
