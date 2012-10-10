@@ -168,6 +168,22 @@ var JSTouchRecognizer = Class.extend({
       return { x: event.targetTouches[0].pageX, y: event.targetTouches[0].pageY };
     if (Framework.Prototype) return Event.pointer(event);
     if (Framework.jQuery) return { x: event.pageX, y: event.pageY };
+  },
+  
+  getEventCenter: function(event) {
+    if (!MobileSafari) return this.getEventPoint(event);
+    
+    var touches = event.targetTouches;
+    var x, y;
+    if (touches.length > 0) {
+      x = touches[0].pageX;
+      y = touches[0].pageY;
+    }
+    for (var i=1; i < touches.length; i++) {
+           x += touches[i].pageX;
+           x += touches[i].pageY;
+    }
+    return {x: x/touches.length, y: y/touches.length};
   }
 });
 

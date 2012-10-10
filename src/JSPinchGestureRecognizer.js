@@ -3,6 +3,28 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
     return "JSPinchGestureRecognizer";
   },
   
+  touchstart: function(event) {
+    if (event.target == this.target) {
+      event.preventDefault();
+      this._super(event);
+      this.center = this.getEventCenter(event);
+    }
+  },
+
+  touchmove: function(event) {
+      if (event.target == this.target || !MobileSafari) {
+        this._super(event);
+        this.center = this.getEventCenter(event);
+      }
+  },
+
+  touchend: function(event) {
+      if (event.target == this.target || !MobileSafari) {
+        this._super(event);
+        delete(this.center);
+      }
+  },  
+  
   gesturestart: function(event) {
     if (event.target == this.target) {
       var allTouches = event.allTouches();

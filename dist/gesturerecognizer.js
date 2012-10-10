@@ -264,6 +264,22 @@ var JSTouchRecognizer = Class.extend({
       return { x: event.targetTouches[0].pageX, y: event.targetTouches[0].pageY };
     if (Framework.Prototype) return Event.pointer(event);
     if (Framework.jQuery) return { x: event.pageX, y: event.pageY };
+  },
+  
+  getEventCenter: function(event) {
+    if (!MobileSafari) return this.getEventPoint(event);
+    
+    var touches = event.targetTouches;
+    var x, y;
+    if (touches.length > 0) {
+      x = touches[0].pageX;
+      y = touches[0].pageY;
+    }
+    for (var i=1; i < touches.length; i++) {
+           x += touches[i].pageX;
+           x += touches[i].pageY;
+    }
+    return {x: x/touches.length, y: y/touches.length};
   }
 });
 
@@ -516,7 +532,7 @@ var JSPanGestureRecognizer = JSGestureRecognizer.extend({
         
         this.translation.x += p.x - this.translationOrigin.x;
         this.translation.y += p.y - this.translationOrigin.y;
-		this.translationOrigin = p;		
+		    this.translationOrigin = p;		
       }
     }
   },
@@ -558,6 +574,28 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
   toString: function() {
     return "JSPinchGestureRecognizer";
   },
+  
+  touchstart: function(event) {
+    if (event.target == this.target) {
+      event.preventDefault();
+      this._super(event);
+      this.center = this.getEventCenter(event);
+    }
+  },
+
+  touchmove: function(event) {
+      if (event.target == this.target || !MobileSafari) {
+        this._super(event);
+        this.center = this.getEventCenter(event);
+      }
+  },
+
+  touchend: function(event) {
+      if (event.target == this.target || !MobileSafari) {
+        this._super(event);
+        delete(this.center);
+      }
+  },  
   
   gesturestart: function(event) {
     if (event.target == this.target) {
