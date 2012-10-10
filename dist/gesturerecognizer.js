@@ -613,7 +613,7 @@ var JSPinchGestureRecognizer = JSGestureRecognizer.extend({
       if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
-        this.previousScale = 1;        
+        this.previousScale = 1;
       } else {
         this.fire(this.target, JSGestureRecognizerStateChanged, this);
         this.velocity = event.scale / this.scale;
@@ -662,10 +662,12 @@ var JSRotationGestureRecognizer = JSGestureRecognizer.extend({
       if (this.beganRecognizer === false) {
         this.fire(this.target, JSGestureRecognizerStateBegan, this);
         this.beganRecognizer = true;
+        this.previousRotation = 0;
       } else {
         this.fire(this.target, JSGestureRecognizerStateChanged, this);
         this.velocity = event.rotation - this.rotation;
-        this.rotation += event.rotation;
+        this.rotation += (event.rotation - this.previousRotation);
+        this.previousRotation = event.rotation;
       }
     }
   },
@@ -677,6 +679,7 @@ var JSRotationGestureRecognizer = JSGestureRecognizer.extend({
   
   reset: function() {
     this.beganRecognizer = false;
+    this.previousRotation = 0;
     this.rotation = 0;
     this.velocity = 0;
   },

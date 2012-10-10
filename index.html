@@ -73,7 +73,6 @@
             sender.state == JSGestureRecognizerStateChanged) {
           var rotation = sender.view.rotation+sender.rotation;
           sender.view.setTransform({ rotation: rotation });
-          sender.setRotation(0);
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.rotation = rotation;
           }
@@ -135,7 +134,6 @@
             sender.state == JSGestureRecognizerStateChanged) {
           var rotation = sender.view.rotation+sender.rotation;
           sender.view.setTransform({ rotation: rotation });
-          sender.setRotation(0);
           if (sender.state == JSGestureRecognizerStateEnded) {
             sender.view.rotation = rotation;
           }
@@ -281,7 +279,7 @@
     </blockquote>
     <h3>Value Accumulation</h3>
     <p>
-      I tried to make the behavior of <tt>JSGestureRecognizer</tt> as close to <rr>UIGestureRecognizer</rr> as possible. This means the scale/rotation/translation values accumulate, meaning that if you want to animate scale/rotation/transformation you will have to set the value to 0 (or in case of scale to 1) after every event, which will return delta values. Some examples below do that.
+      I tried to make the behavior of <tt>JSGestureRecognizer</tt> as close to <rr>UIGestureRecognizer</rr> as possible. This means the scale/rotation/translation values accumulate, meaning that if you want to animate scale/rotation/transformation you will have to set the value to 0 (or in case of scale to 1) after every event, which will return delta values.
     </p>
     <h3>Rotation Value</h3>
     <p>
@@ -320,7 +318,6 @@
               sender.state == JSGestureRecognizerStateChanged) {
             var rotation = sender.view.rotation+sender.rotation;
             sender.view.setTransform({ rotation: rotation });
-            sender.setRotation(0);
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.rotation = rotation;
             }
@@ -452,7 +449,6 @@
               sender.state == JSGestureRecognizerStateChanged) {
             var rotation = sender.view.rotation+sender.rotation;
             sender.view.setTransform({ rotation: rotation });
-            sender.setRotation(0);
             if (sender.state == JSGestureRecognizerStateEnded) {
               sender.view.rotation = rotation;
             }
