@@ -181,7 +181,7 @@ var JSTouchRecognizer = Class.extend({
     }
     for (var i=1; i < touches.length; i++) {
            x += touches[i].pageX;
-           y += touches[i].pageY;
+           x += touches[i].pageY;
     }
     return {x: x/touches.length, y: y/touches.length};
   }
